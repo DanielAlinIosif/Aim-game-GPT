@@ -135,6 +135,15 @@
     const clickSound = document.getElementById('click-sound');
     const gameOverSound = document.getElementById('game-over-sound');
 
+    // Add error handling for audio playback
+    function safePlay(audio) {
+      if (!audio) return;
+      try {
+        audio.currentTime = 0;
+        audio.catch().catch(() => {});
+      } catch (e) {}
+    }
+
 
     let time = 0;
     let score = 0;
@@ -191,13 +200,12 @@
       const x = Math.random() * (width - size);
       const y = Math.random() * (height - size);
       const color = `hsl(${Math.random() * 360}, 70%, 60%)`;
-
-      circle.classList.add('circle');
-      circle.style.width = `${size}px`;
-      circle.style.height = `${size}px`;
-      circle.style.top = `${y}px`;
-      circle.style.left = `${x}px`;
-      circle.style.background = color;
+      circle.addEventListener('click', () => {
+        score++;
+        safePlay(clickSound);
+        circle.remove();
+        createRandomCircle();
+      });
       circle.style.cursor = 'pointer';
 
       circle.addEventListener('click', () => {
@@ -206,12 +214,11 @@
         clickSound.play();
         circle.remove();
         createRandomCircle();
-      });
-
-      board.appendChild(circle);
-    }
-
-    function endGame() {
+      safePlay(gameOverSound);
+      board.innerHTML = `<h2>Scor final: ${score}</h2>`;
+      saveHighScore(score);
+      showHighScores();
+      startButton.style.display = 'inline-block';
       clearInterval(timerInterval);
       clearInterval(progressInterval);
       gameOverSound.currentTime = 0;
