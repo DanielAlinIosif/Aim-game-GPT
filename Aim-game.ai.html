@@ -214,6 +214,8 @@
     function endGame() {
       clearInterval(timerInterval);
       clearInterval(progressInterval);
+      gameOverSound.currentTime = 0;
+      gameOverSound.play();
       board.innerHTML = `<h2>Scor final: ${score}</h2>`;
       saveHighScore(score);
       showHighScores();
