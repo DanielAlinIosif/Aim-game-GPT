@@ -195,7 +195,7 @@
       circle.addEventListener('click', () => {
         score++;
         clickSound.currentTime = 0;
-        clickSound.play();
+        clickSound.play(once);
         circle.remove();
         createRandomCircle();
       });
