@@ -121,8 +121,8 @@
   </div>
 
   <audio id="click-sound" src="Audio/video-game-bonus-323603.mp3"></audio>
+  <audio id="game-over-sound" src="Audio/game-over-38511.mp3"></audio>
   
-
   <script>
     const startButton = document.getElementById('start');
     const timeList = document.getElementById('time-list');
@@ -131,8 +131,9 @@
     const progressBar = document.getElementById('progress-bar');
     const scoresList = document.getElementById('scores-list');
     const clickSound = document.getElementById('click-sound');
-    
+    const gameOverSound = document.getElementById('game-over-sound');
 
+  
     let time = 0;
     let score = 0;
     let timerInterval;
@@ -140,6 +141,7 @@
     let totalTime = 0;
 
     document.addEventListener('DOMContentLoaded', showHighScores);
+
 
     startButton.addEventListener('click', () => {
       startButton.style.display = 'none';
@@ -207,6 +209,8 @@
     function endGame() {
       clearInterval(timerInterval);
       clearInterval(progressInterval);
+      gameOverSound.currentTime = 0;
+      gameOverSound.play();
       board.innerHTML = `<h2>Scor final: ${score}</h2>`;
       saveHighScore(score);
       showHighScores();
