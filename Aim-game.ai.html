@@ -140,7 +140,7 @@
       if (!audio) return;
       try {
         audio.currentTime = 0;
-        audio.catch().catch(() => {});
+        audio.play().catch(() => {});
       } catch (e) {}
     }
 
