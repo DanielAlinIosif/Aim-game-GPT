@@ -200,33 +200,22 @@
       const x = Math.random() * (width - size);
       const y = Math.random() * (height - size);
       const color = `hsl(${Math.random() * 360}, 70%, 60%)`;
+      circle.style.width = `${size}px`;
+      circle.style.height = `${size}px`;
+      circle.style.background = color;
+      circle.style.top = `${y}px`;
+      circle.style.left = `${x}px`;
+      circle.classList.add('circle');
+      circle.style.cursor = 'pointer';
+
       circle.addEventListener('click', () => {
         score++;
         safePlay(clickSound);
         circle.remove();
         createRandomCircle();
       });
-      circle.style.cursor = 'pointer';
 
-      circle.addEventListener('click', () => {
-        score++;
-        clickSound.currentTime = 0;
-        clickSound.play();
-        circle.remove();
-        createRandomCircle();
-      safePlay(gameOverSound);
-      board.innerHTML = `<h2>Scor final: ${score}</h2>`;
-      saveHighScore(score);
-      showHighScores();
-      startButton.style.display = 'inline-block';
-      clearInterval(timerInterval);
-      clearInterval(progressInterval);
-      gameOverSound.currentTime = 0;
-      gameOverSound.play();
-      board.innerHTML = `<h2>Scor final: ${score}</h2>`;
-      saveHighScore(score);
-      showHighScores();
-      startButton.style.display = 'inline-block';
+      board.appendChild(circle);
     }
 
     function startProgressBar() {
