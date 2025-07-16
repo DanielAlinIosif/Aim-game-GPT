@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ro">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width">
-<head>
   <title>Click Game</title>
   <style>
     * {
@@ -109,6 +109,7 @@
     <li data-time="30">30 sec</li>
   </ul>
 
+
   <div id="progress-bar-container">
     <div id="progress-bar"></div>
   </div>
@@ -134,14 +135,19 @@
     const clickSound = document.getElementById('click-sound');
     const gameOverSound = document.getElementById('game-over-sound');
 
+
     let time = 0;
     let score = 0;
     let timerInterval;
     let progressInterval;
     let totalTime = 0;
 
+
+
+
     document.addEventListener('DOMContentLoaded', showHighScores);
 
+    
     startButton.addEventListener('click', () => {
       startButton.style.display = 'none';
       timeList.style.display = 'flex';
