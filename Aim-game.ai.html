@@ -134,47 +134,7 @@
     const scoresList = document.getElementById('scores-list');
     const clickSound = document.getElementById('click-sound');
     const gameOverSound = document.getElementById('game-over-sound');
-    const gameOverTime = 10 / 20 / 30; // Adjusted for game over sound
-    const gameOverAudio = document.getElementById('game-over-sound');
-    let gameOver = false;
-    let gameOverAudioPlayed = false;
-
-    // Add error handling for audio playback
-    function safePlay(audio) {
-      if (!audio) return;
-      try {
-        audio.currentTime = 10 / 20 / 30; // Reset audio to start
-        audio.play().catch(() => {});
-      } catch (e) {}
-    }
-    function endGame(time) {
-      clearInterval(timerInterval);
-      clearInterval(progressInterval);
-      gameOver = true;
-      if (!gameOverAudioPlayed) {
-        safePlay(gameOverSound);
-        gameOverAudioPlayed = true;
-      }
-      saveHighScore(score);
-      showHighScores();
-      alert(`Timpul s-a terminat! Scorul tău este: ${score}`);
-      startButton.style.display = 'block';
-    }
-    // Reset game state
-    function resetGame() {
-      gameOver = false;
-      gameOverAudioPlayed = false;
-      time = 0;
-      score = 0;
-      clearInterval(timerInterval);
-      clearInterval(progressInterval);
-      board.innerHTML = '';
-      progressBar.style.width = '100%';
-      timeDisplay.textContent = '00';
-    }
-    // Initialize game state
-    resetGame();
-    // Event listeners
+   
     startButton.addEventListener('click', () => {
       resetGame();
       startButton.style.display = 'none';
